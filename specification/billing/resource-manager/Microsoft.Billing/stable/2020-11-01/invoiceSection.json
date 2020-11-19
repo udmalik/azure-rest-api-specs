@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/providers/Microsoft.Billing/operations": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "operationId": "Operations_List",
+        "description": "Lists the available billing REST API operations.",
+        "externalDocs": {
+          "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
+        },
+        "parameters": [{
+          "$ref": "#/parameters/apiVersionParameter"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/OperationListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections": {
       "get": {
         "tags": [
@@ -228,7 +260,7 @@
             "$ref": "./examples/ValidateDeleteInvoiceSectionEligibilityFailure.json"
           }
         },
-        "operationId": "InvoiceSections_GetEligibilityToDeleteInvoiceSection",
+        "operationId": "GetEligibilityToDeleteInvoiceSection",
         "description": "Validates if the invoice section can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
         "externalDocs": {
           "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
@@ -264,6 +296,55 @@
     }
   },
   "definitions": {
+    "OperationListResult": {
+      "description": "The list of billing operations and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "description": "The list of billing operations supported by the Microsoft.Billing resource provider.",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        },
+        "nextLink": {
+          "description": "URL to get the next set of operation list results if there are any.",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Operation": {
+      "description": "A Billing REST API operation.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Operation name: {provider}/{resource}/{operation}.",
+          "type": "string",
+          "readOnly": true
+        },
+        "display": {
+          "description": "The object that represents the operation.",
+          "properties": {
+            "provider": {
+              "description": "Service provider: Microsoft.Billing.",
+              "type": "string",
+              "readOnly": true
+            },
+            "resource": {
+              "description": "Resource on which the operation is performed such as invoice and billing subscription.",
+              "type": "string",
+              "readOnly": true
+            },
+            "operation": {
+              "description": "Operation type such as read, write and delete.",
+              "type": "string",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    },
     "InvoiceSectionListResult": {
       "description": "The list of invoice sections.",
       "properties": {
@@ -439,6 +520,7 @@
       }
     },
     "ErrorSubDetails": {
+      "description": "The sub details of the error.",
       "type": "array",
       "items": {
         "type": "object",
@@ -506,6 +588,22 @@
       "required": true,
       "type": "string",
       "x-ms-parameter-location": "method"
+    }
+  },
+  "security": [{
+    "azure_auth": [
+      "user_impersonation"
+    ]
+  }],
+  "securityDefinitions": {
+    "azure_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "flow": "implicit",
+      "description": "Azure Active Directory OAuth2 Flow.",
+      "scopes": {
+        "user_impersonation": "impersonate your user account"
+      }
     }
   }
 }
