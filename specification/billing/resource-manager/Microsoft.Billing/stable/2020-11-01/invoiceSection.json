@@ -225,10 +225,10 @@
                     "InvoiceSections"
                 ],
                 "x-ms-examples": {
-                    "validateDeleteInvoiceSectionEligibilitySuccess": {
+                    "ValidateDeleteInvoiceSectionEligibilitySuccess": {
                         "$ref": "./examples/ValidateDeleteInvoiceSectionEligibilitySuccess.json"
                     },
-                    "validateDeleteInvoiceSectionEligibilityFailure": {
+                    "ValidateDeleteInvoiceSectionEligibilityFailure": {
                         "$ref": "./examples/ValidateDeleteInvoiceSectionEligibilityFailure.json"
                     }
                 },
