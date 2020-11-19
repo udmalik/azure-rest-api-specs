@@ -1,0 +1,23 @@
+{
+    "parameters": {
+        "api-version": "2020-11-01",
+        "billingAccountName": "{billingAccountName}",
+        "billingProfileName": "{billingProfileName}",
+        "invoiceSectionName": "{invoiceSectionName}"
+    },
+    "responses": {
+        "200": {
+            "body": {
+                "isEligible": false,
+                "errorDetails": [
+                    {
+                        "message": "This is the invoice section that was created when its billing profile was created so it can’t be deleted."
+                    },
+                    {
+                        "message": "This is the only invoice section in this billing profile so it can’t be deleted ."
+                    }
+                ]
+            }
+        }
+    }
+}
