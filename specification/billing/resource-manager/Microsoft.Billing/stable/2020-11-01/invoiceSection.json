@@ -76,7 +76,7 @@
             "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "name": "$includeAll",
+            "name": "includeAll",
             "description": "May be used to include filtered out invoice sections.",
             "in": "query",
             "required": false,
@@ -131,8 +131,8 @@
             "$ref": "#/parameters/invoiceSectionNameParameter"
           },
           {
-            "name": "$includeAll",
-            "description": "May be used to include filtered out invoice sections.",
+            "name": "includeAll",
+            "description": "Custom query filter.May be used to include filtered out invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"
