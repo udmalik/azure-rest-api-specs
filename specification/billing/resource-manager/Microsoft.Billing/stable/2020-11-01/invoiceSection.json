@@ -129,6 +129,13 @@
           },
           {
             "$ref": "#/parameters/invoiceSectionNameParameter"
+          },
+          {
+            "name": "$includeAll",
+            "description": "May be used to include filtered out invoice sections.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
