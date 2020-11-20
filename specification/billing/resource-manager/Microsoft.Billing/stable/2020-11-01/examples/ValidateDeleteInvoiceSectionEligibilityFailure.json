@@ -9,7 +9,8 @@
     "200": {
       "body": {
         "isEligible": false,
-        "errorDetails": [{
+        "errorDetails": [
+          {
             "message": "This is the invoice section that was created when its billing profile was created so it can’t be deleted."
           },
           {
