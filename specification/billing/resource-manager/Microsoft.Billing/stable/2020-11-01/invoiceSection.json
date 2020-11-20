@@ -28,20 +28,20 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           }
         ],
         "responses": {
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/OperationListResult"
+              "$ref": "#/definitions/OperationListResult"
             }
           },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         },
@@ -67,13 +67,13 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingAccountNameParameter"
+            "$ref": "#/parameters/billingAccountNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingProfileNameParameter"
+            "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
             "name": "$includeAll",
@@ -87,13 +87,13 @@
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSectionListResult"
+              "$ref": "#/definitions/InvoiceSectionListResult"
             }
           },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         },
@@ -119,29 +119,29 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingAccountNameParameter"
+            "$ref": "#/parameters/billingAccountNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingProfileNameParameter"
+            "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/invoiceSectionNameParameter"
+            "$ref": "#/parameters/invoiceSectionNameParameter"
           }
         ],
         "responses": {
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSection"
+              "$ref": "#/definitions/InvoiceSection"
             }
           },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -160,23 +160,23 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingAccountNameParameter"
+            "$ref": "#/parameters/billingAccountNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingProfileNameParameter"
+            "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/invoiceSectionNameParameter"
+            "$ref": "#/parameters/invoiceSectionNameParameter"
           },
           {
             "name": "parameters",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSection"
+              "$ref": "#/definitions/InvoiceSection"
             },
             "description": "The new or updated invoice section."
           }
@@ -185,7 +185,7 @@
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSection"
+              "$ref": "#/definitions/InvoiceSection"
             }
           },
           "202": {
@@ -204,7 +204,7 @@
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -225,29 +225,29 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingAccountNameParameter"
+            "$ref": "#/parameters/billingAccountNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingProfileNameParameter"
+            "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/invoiceSectionNameParameter"
+            "$ref": "#/parameters/invoiceSectionNameParameter"
           }
         ],
         "responses": {
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSection"
+              "$ref": "#/definitions/InvoiceSection"
             }
           },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -273,33 +273,330 @@
         },
         "parameters": [
           {
-            "$ref": "common.json#/parameters/apiVersionParameter"
+            "$ref": "#/parameters/apiVersionParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingAccountNameParameter"
+            "$ref": "#/parameters/billingAccountNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/billingProfileNameParameter"
+            "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "$ref": "common.json#/parameters/invoiceSectionNameParameter"
+            "$ref": "#/parameters/invoiceSectionNameParameter"
           }
         ],
         "responses": {
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "common.json#/definitions/InvoiceSectionDeletionEligibilityResult"
+              "$ref": "#/definitions/InvoiceSectionDeletionEligibilityResult"
             }
           },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
-              "$ref": "common.json#/definitions/ErrorResponse"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "OperationListResult": {
+      "description": "The list of billing operations and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "description": "The list of billing operations supported by the Microsoft.Billing resource provider.",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        },
+        "nextLink": {
+          "description": "URL to get the next set of operation list results if there are any.",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Operation": {
+      "description": "A Billing REST API operation.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Operation name: {provider}/{resource}/{operation}.",
+          "type": "string",
+          "readOnly": true
+        },
+        "display": {
+          "description": "The object that represents the operation.",
+          "properties": {
+            "provider": {
+              "description": "Service provider: Microsoft.Billing.",
+              "type": "string",
+              "readOnly": true
+            },
+            "resource": {
+              "description": "Resource on which the operation is performed such as invoice and billing subscription.",
+              "type": "string",
+              "readOnly": true
+            },
+            "operation": {
+              "description": "Operation type such as read, write and delete.",
+              "type": "string",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    },
+    "InvoiceSectionListResult": {
+      "description": "The list of invoice sections.",
+      "properties": {
+        "value": {
+          "description": "The list of invoice sections.",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/InvoiceSection"
+          }
+        },
+        "nextLink": {
+          "description": "The link (url) to the next page of results.",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "InvoiceSection": {
+      "description": "An invoice section.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "description": "The properties of an invoice section.",
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/InvoiceSectionProperties"
+        }
+      }
+    },
+    "InvoiceSectionProperties": {
+      "description": "The properties of an invoice section.",
+      "properties": {
+        "displayName": {
+          "description": "The name of the invoice section.",
+          "type": "string"
+        },
+        "labels": {
+          "type": "object",
+          "description": "Dictionary of metadata associated with the invoice section.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxItems": 1000
+        },
+        "state": {
+          "description": "Identifies the state of an invoice section.",
+          "type": "string",
+          "enum": [
+            "Active",
+            "Deleted",
+            "Disabled",
+            "Restricted",
+            "UnderReview",
+            "Warned"
+          ],
+          "readOnly": true,
+          "x-ms-enum": {
+            "name": "InvoiceSectionState",
+            "modelAsString": true
+          }
+        },
+        "reasonCode": {
+          "description": "Reason for the specified invoice section status.",
+          "type": "string",
+          "enum": [
+            "PastDue",
+            "UnusalActivity"
+          ],
+          "readOnly": true,
+          "x-ms-enum": {
+            "name": "InvoiceSectionStatusReasonCode",
+            "modelAsString": true
+          }
+        },
+        "systemId": {
+          "description": "The system generated unique identifier for an invoice section.",
+          "type": "string",
+          "readOnly": true
+        },
+        "targetCloud": {
+          "description": "Identifies the cloud environments that are associated with an invoice section. This is a system managed optional field and gets updated as the invoice section gets associated with accounts in various clouds.",
+          "$ref": "#/definitions/TargetCloud",
+          "readOnly": true
+        }
+      }
+    },
+    "InvoiceSectionDeletionEligibilityResult": {
+      "description": "Elibility to delete an invoice section.",
+      "type": "object",
+      "properties": {
+        "isEligible": {
+          "description": "Specifies whether the invoice section is eligible to be deleted.",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errorDetails": {
+          "description": "The list of delete invoice section eligibility errors.",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/DeleteInvoiceSectionErrorDetails"
+          }
+        }
+      }
+    },
+    "DeleteInvoiceSectionErrorDetails": {
+      "type": "object",
+      "description": "Error details of the delete invoice section eligibility validation.",
+      "properties": {
+        "message": {
+          "description": "Error message for the delete invoice section eligibility validation.",
+          "type": "string"
+        }
+      }
+    },
+    "Resource": {
+      "description": "The Resource model definition.",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Resource Id."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Resource name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Resource type."
+        }
+      },
+      "x-ms-azure-resource": true
+    },
+    "ErrorResponse": {
+      "description": "Error response indicates that the service is not able to process the incoming request. The reason is provided in the error message.",
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "The details of the error.",
+          "$ref": "#/definitions/ErrorDetails"
+        }
+      }
+    },
+    "ErrorDetails": {
+      "description": "The details of the error.",
+      "properties": {
+        "code": {
+          "description": "Error code.",
+          "type": "string",
+          "readOnly": true
+        },
+        "message": {
+          "description": "Error message indicating why the operation failed.",
+          "type": "string",
+          "readOnly": true
+        },
+        "target": {
+          "description": "The target of the particular error.",
+          "type": "string",
+          "readOnly": true
+        },
+        "details": {
+          "description": "The sub details of the error.",
+          "readOnly": true,
+          "$ref": "#/definitions/ErrorSubDetails"
+        }
+      }
+    },
+    "ErrorSubDetails": {
+      "description": "The sub details of the error.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "Error code.",
+            "type": "string",
+            "readOnly": true
+          },
+          "message": {
+            "description": "Error message indicating why the operation failed.",
+            "type": "string",
+            "readOnly": true
+          },
+          "target": {
+            "description": "The target of the particular error.",
+            "type": "string",
+            "readOnly": true
+          }
+        }
+      }
+    },
+    "TargetCloud": {
+      "type": "string",
+      "description": "Possible cloud environments.",
+      "enum": [
+        "USGov",
+        "USNat",
+        "USSec"
+      ],
+      "x-ms-enum": {
+        "name": "targetCloud",
+        "modelAsString": true
+      }
+    }
+  },
+  "parameters": {
+    "apiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "description": "The version of the API to be used with the client request. The current version is 2020-05-01."
+    },
+    "billingAccountNameParameter": {
+      "name": "billingAccountName",
+      "in": "path",
+      "description": "The ID that uniquely identifies a billing account.",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "invoiceSectionNameParameter": {
+      "name": "invoiceSectionName",
+      "in": "path",
+      "description": "The ID that uniquely identifies an invoice section.",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "billingProfileNameParameter": {
+      "name": "billingProfileName",
+      "in": "path",
+      "description": "The ID that uniquely identifies a billing profile.",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
     }
   },
   "securityDefinitions": {
