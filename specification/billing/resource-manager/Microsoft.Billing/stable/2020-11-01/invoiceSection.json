@@ -572,7 +572,7 @@
       "in": "query",
       "required": true,
       "type": "string",
-      "description": "The version of the API to be used with the client request. The current version is 2020-05-01."
+      "description": "The version of the API to be used with the client request. The current version is 2020-11-01."
     },
     "billingAccountNameParameter": {
       "name": "billingAccountName",
