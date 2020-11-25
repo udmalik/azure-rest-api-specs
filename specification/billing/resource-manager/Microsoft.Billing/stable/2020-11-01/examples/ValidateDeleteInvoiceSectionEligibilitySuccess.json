@@ -8,7 +8,7 @@
   "responses": {
     "200": {
       "body": {
-        "isEligible": true
+        "isEligible": "true"
       }
     }
   }

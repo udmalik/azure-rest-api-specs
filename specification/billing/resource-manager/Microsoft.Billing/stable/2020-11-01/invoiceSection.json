@@ -76,8 +76,8 @@
             "$ref": "#/parameters/billingProfileNameParameter"
           },
           {
-            "name": "includeAll",
-            "description": "May be used to include filtered out invoice sections.",
+            "name": "$expand",
+            "description": "May be used to include deleted invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -131,8 +131,8 @@
             "$ref": "#/parameters/invoiceSectionNameParameter"
           },
           {
-            "name": "includeAll",
-            "description": "Custom query filter.May be used to include filtered out invoice sections.",
+            "name": "$expand",
+            "description": "May be used to include deleted invoice sections.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -226,6 +226,7 @@
           }
         },
         "operationId": "InvoiceSections_Delete",
+        "x-ms-long-running-operation": true,
         "description": "Deletes an invoice section. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
         "externalDocs": {
           "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
@@ -251,6 +252,19 @@
               "$ref": "#/definitions/InvoiceSection"
             }
           },
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Location": {
+                "description": "Location URI to poll for result",
+                "type": "string"
+              },
+              "Retry-After": {
+                "description": "Recommended time to wait before making another request to check the status of the operation. The time is specified in seconds.",
+                "type": "integer"
+              }
+            }
+          },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {
@@ -261,7 +275,7 @@
       }
     },
     "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/validateDeleteInvoiceSectionEligibility": {
-      "get": {
+      "post": {
         "tags": [
           "InvoiceSections"
         ],
@@ -273,7 +287,7 @@
             "$ref": "./examples/ValidateDeleteInvoiceSectionEligibilityFailure.json"
           }
         },
-        "operationId": "InvoiceSections_GetEligibilityToDeleteInvoiceSection",
+        "operationId": "InvoiceSections_validatedeleteinvoicesectioneligibility",
         "description": "Validates if the invoice section can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.",
         "externalDocs": {
           "url": "https://docs.microsoft.com/en-us/rest/api/billing/"
@@ -296,7 +310,7 @@
           "200": {
             "description": "OK. The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/InvoiceSectionDeletionEligibilityResult"
+              "$ref": "#/definitions/InvoiceSectionDeleteEligibilityResult"
             }
           },
           "default": {
@@ -450,33 +464,34 @@
         }
       }
     },
-    "InvoiceSectionDeletionEligibilityResult": {
-      "description": "Elibility to delete an invoice section.",
+    "InvoiceSectionDeleteEligibilityResult": {
+      "description": "Elibility to delete an invoice section result.",
       "type": "object",
       "properties": {
         "isEligible": {
           "description": "Specifies whether the invoice section is eligible to be deleted.",
-          "type": "boolean",
-          "readOnly": true
+          "$ref": "#/definitions/DeleteEligibilityStatus"
         },
         "errorDetails": {
           "description": "The list of delete invoice section eligibility errors.",
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/DeleteInvoiceSectionErrorDetails"
+            "$ref": "#/definitions/ErrorDetails"
           }
         }
       }
     },
-    "DeleteInvoiceSectionErrorDetails": {
-      "type": "object",
-      "description": "Error details of the delete invoice section eligibility validation.",
-      "properties": {
-        "message": {
-          "description": "Error message for the delete invoice section eligibility validation.",
-          "type": "string"
-        }
+    "DeleteEligibilityStatus": {
+      "type": "string",
+      "description": "Validation status of delete invoice section eligibility.",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "x-ms-enum": {
+        "name": "deleteEligibilityStatus",
+        "modelAsString": true
       }
     },
     "Resource": {
